@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "Persona.h"
+#import "Humano.h"
+#import "NSString+PasaAMayusculas.h"
 
 @interface AppDelegate ()
 
@@ -81,6 +83,10 @@
         NSLog(@"NSMutableSet: %@ %@", persona.nombre, persona.primerApellido);
     }
     
+    //Actividad 13
+    Humano *humano = [[Humano alloc] initWithNombre:@"Javier" apellido:@"Garcia" yDNI:@"12345678G"];
+    NSLog(@"Normal: %@, Mayusculas: %@", humano.muestraNombre, [[NSString alloc] pasaMayus:[humano muestraNombre]]);
+    NSLog(@"Normal: %@, Mayusculas: %@", humano.muestraNombreyDNI, [[NSString alloc] pasaMayus:[humano muestraNombreyDNI]]);
     
     return YES;
 }
@@ -121,9 +127,11 @@
     return 10;
 }
 
+//Actividad3
 - (NSNumber*)suma:(int)numero con:(float)otroNumero{
-    //Actividad3
+    
     otroNumero += numero;
+    
     return [[NSNumber alloc] initWithFloat:otroNumero];
 }
 
