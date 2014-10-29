@@ -12,7 +12,7 @@
 
 -(NSString*)pasaMayus:(NSString*)string{
     
-   return [[NSString alloc] initWithFormat:@"%@",[string uppercaseString]];
+   return [string uppercaseString];
     
 }
 
