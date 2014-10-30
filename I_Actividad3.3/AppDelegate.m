@@ -114,7 +114,7 @@
     
     NSDate *unaFecha = [calendario dateFromComponents:components];
     
-    //Actividad 17 . He utilizado los componentes de la fecha actual de la actividad 15
+    //Actividad 17 . He utilizado el calendario y los componentes de la fecha actual de la actividad 15
     unaFecha = [calendario dateByAddingUnit:NSCalendarUnitDay value:1 toDate:unaFecha options:0];
     unaFecha = [calendario dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:unaFecha options:0];
     unaFecha = [calendario dateBySettingHour:[fechaComponents hour] minute:[fechaComponents minute] second:0 ofDate:unaFecha options:0];
@@ -123,7 +123,15 @@
     
     NSLog(@"%@", [formato stringFromDate:unaFecha]);
     
-    //Actividad 18
+    //Actividad 18 . He utilizado el calendario, componentes y la fecha actual de la actividad 15
+    NSDateComponents *compLunesActual = [calendario components:NSCalendarUnitWeekOfMonth | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:fechaActual];
+    [compLunesActual setWeekday:2];
+    
+    
+    NSDate *lunesActual = [calendario dateFromComponents:compLunesActual];
+    
+    NSLog(@"Fecha del lunes de la semana actual: %@", [formato stringFromDate:lunesActual]);
+    
     
     return YES;
 }
