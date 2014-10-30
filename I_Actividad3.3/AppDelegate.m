@@ -107,8 +107,23 @@
           (int)[fechaComponents second], (int)[fechaComponents weekday]);
     
     //Actividad 16
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.year = 2000;
+    components.month = 3;
+    components.day = 25;
     
+    NSDate *unaFecha = [calendario dateFromComponents:components];
     
+    //Actividad 17 . He utilizado los componentes de la fecha actual de la actividad 15
+    unaFecha = [calendario dateByAddingUnit:NSCalendarUnitDay value:1 toDate:unaFecha options:0];
+    unaFecha = [calendario dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:unaFecha options:0];
+    unaFecha = [calendario dateBySettingHour:[fechaComponents hour] minute:[fechaComponents minute] second:0 ofDate:unaFecha options:0];
+    unaFecha = [calendario dateByAddingUnit:NSCalendarUnitHour value:1 toDate:unaFecha options:0];
+    unaFecha = [calendario dateByAddingUnit:NSCalendarUnitMinute value:30 toDate:unaFecha options:0];
+    
+    NSLog(@"%@", [formato stringFromDate:unaFecha]);
+    
+    //Actividad 18
     
     return YES;
 }
