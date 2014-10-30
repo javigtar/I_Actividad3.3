@@ -32,7 +32,7 @@
     [self miMetodo:self];
     
     //Actividad 4
-    [self cuentaNumeros:1];
+    [self cuentaNumeros:0];
     
     //Actividad5
     [self muestraCadena:'a' conNumero:10 conFloat:2.5];
@@ -65,28 +65,35 @@
         NSLog(@"No existe la cadena: %@ en el set", cadena2);
     }
     
+    
     //Actividad 12
     NSSet *setPersonas = [[NSSet alloc] initWithObjects:[[Persona alloc] initWithNombre:@"Pepe" yApellido:@"Garcia"] , [[Persona alloc] initWithNombre:@"Juan" yApellido:@"Rodriguez"], [[Persona alloc] initWithNombre:@"Pepe" yApellido:@"Tarin"], nil];
+    
+    //Creo un predicado para que la propiedad nombre sea Pepe
     NSPredicate *miPredicate = [NSPredicate predicateWithFormat:@"self.nombre LIKE 'Pepe'"];
     
-    //Usando NSSet
+    //Ejemplo Usando NSSet
+    //Filtro la colección setPersonas para que coja solo las que cumplan miPredicate
     NSSet *personasFiltradas = [setPersonas filteredSetUsingPredicate:miPredicate];
     
     for ( Persona *persona in personasFiltradas){
         NSLog(@"NSSet: %@ %@", persona.nombre, persona.primerApellido);
     }
     
-    //Usando NSMutableSet
+    //Ejemplo Usando NSMutableSet
+    //Inicializo el NSMutableSet a partir de un NSSEt y filtro la colección setPersonas para que coja solo las que cumplan miPredicate
     NSMutableSet *personasFiltradasMutableSet = [[NSMutableSet alloc] initWithSet:[setPersonas filteredSetUsingPredicate:miPredicate]];
     
     for ( Persona *persona in personasFiltradasMutableSet){
         NSLog(@"NSMutableSet: %@ %@", persona.nombre, persona.primerApellido);
     }
     
+    
     //Actividad 13
     Humano *humano = [[Humano alloc] initWithNombre:@"Javier" apellido:@"Garcia" yDNI:@"12345678G"];
     NSLog(@"Normal: %@, Mayusculas: %@", humano.muestraNombre, [[NSString alloc] pasaMayus:[humano muestraNombre]]);
     NSLog(@"Normal: %@, Mayusculas: %@", humano.muestraNombreyDNI, [[NSString alloc] pasaMayus:[humano muestraNombreyDNI]]);
+    
     
     //Actividad 15
     NSDate *fechaActual = [NSDate date];
@@ -96,15 +103,16 @@
     
     NSLog(@"Fecha y hora actual: %@", [formato stringFromDate:fechaActual]);
     
-    NSDateComponents *fechaComponents = [[NSDateComponents alloc]init];
-    
+    //Creo un calendario de tipo Gregoriano
     NSCalendar *calendario = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
-    fechaComponents = [ calendario components:(NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond
+    //Creo los componentes día, hora, minuto, segundo y día de la semana de la fecha actual a partir del calendiario creado anteriormente
+    NSDateComponents *fechaComponents = [ calendario components:(NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond
                                                | NSCalendarUnitWeekday) fromDate:fechaActual];
     
     NSLog(@"Dia: %d, Hora: %d, Minuto: %d, Segundo: %d, Dia de la semana: %d", (int)[fechaComponents day], (int)[fechaComponents hour], (int)[fechaComponents minute],
           (int)[fechaComponents second], (int)[fechaComponents weekday]);
+    
     
     //Actividad 16
     NSDateComponents *components = [[NSDateComponents alloc] init];
@@ -114,16 +122,26 @@
     
     NSDate *unaFecha = [calendario dateFromComponents:components];
     
+    
     //Actividad 17 . He utilizado el calendario y los componentes de la fecha actual de la actividad 15
+    
+    //Sumo un día a la fecha
     unaFecha = [calendario dateByAddingUnit:NSCalendarUnitDay value:1 toDate:unaFecha options:0];
+    //Resto un mes a la fecha
     unaFecha = [calendario dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:unaFecha options:0];
+    //Establezco la fecha y la hora actuales en la fecha
     unaFecha = [calendario dateBySettingHour:[fechaComponents hour] minute:[fechaComponents minute] second:0 ofDate:unaFecha options:0];
+    //Le sumo una hora a la fecha
     unaFecha = [calendario dateByAddingUnit:NSCalendarUnitHour value:1 toDate:unaFecha options:0];
+    //Le sumo 30 minutos a la fecha
     unaFecha = [calendario dateByAddingUnit:NSCalendarUnitMinute value:30 toDate:unaFecha options:0];
     
     NSLog(@"Fecha modificandole datos: %@", [formato stringFromDate:unaFecha]);
     
+    
     //Actividad 18 . He utilizado el calendario, componentes y la fecha actual de la actividad 15
+    
+    //Creo los componentes semana del mes, mes y año de la fecha actual y establezco el dia de la semana en 2 que es lunes
     NSDateComponents *compLunesActual = [calendario components:NSCalendarUnitWeekOfMonth | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:fechaActual];
     [compLunesActual setWeekday:2];
     
@@ -131,12 +149,14 @@
     
     NSLog(@"Fecha del lunes de la semana actual: %@", [formato stringFromDate:lunesActual]);
     
+    
     //Actividad 19 .He utilizado la fecha actual de la actividad 15
     NSDateFormatter *formatoFecha = [[NSDateFormatter alloc] init];
     [formatoFecha setDateStyle:NSDateFormatterLongStyle];
     
     NSLog(@"Fecha: %@, Locale: %@", [formatoFecha stringFromDate:fechaActual], [[formatoFecha locale] localeIdentifier]);
     
+    //Creo un Locale con el identificador de Inglaterra
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
     
     [formatoFecha setLocale:locale];
