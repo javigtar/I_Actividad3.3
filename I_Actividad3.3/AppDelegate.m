@@ -88,6 +88,28 @@
     NSLog(@"Normal: %@, Mayusculas: %@", humano.muestraNombre, [[NSString alloc] pasaMayus:[humano muestraNombre]]);
     NSLog(@"Normal: %@, Mayusculas: %@", humano.muestraNombreyDNI, [[NSString alloc] pasaMayus:[humano muestraNombreyDNI]]);
     
+    //Actividad 15
+    NSDate *fechaActual = [NSDate date];
+    
+    NSDateFormatter *formato = [[NSDateFormatter alloc] init];
+    [formato setDateFormat:@"dd/MM/yyy, HH:mm:ss"];
+    
+    NSLog(@"Fecha y hora actual: %@", [formato stringFromDate:fechaActual]);
+    
+    NSDateComponents *fechaComponents = [[NSDateComponents alloc]init];
+    
+    NSCalendar *calendario = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    fechaComponents = [ calendario components:(NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond
+                                               | NSCalendarUnitWeekday) fromDate:fechaActual];
+    
+    NSLog(@"Dia: %d, Hora: %d, Minuto: %d, Segundo: %d, Dia de la semana: %d", (int)[fechaComponents day], (int)[fechaComponents hour], (int)[fechaComponents minute],
+          (int)[fechaComponents second], (int)[fechaComponents weekday]);
+    
+    //Actividad 16
+    
+    
+    
     return YES;
 }
 

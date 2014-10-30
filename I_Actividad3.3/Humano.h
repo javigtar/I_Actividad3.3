@@ -14,9 +14,17 @@
 @property (nonatomic, strong)NSString* primerApellido;
 @property (nonatomic, strong)NSString* dni;
 
+//Actividad 14
+@property (readonly, nonatomic, strong)NSNumber* altura;
+@property (readonly, nonatomic, strong)NSNumber* peso;
+
 -(id)initWithNombre:(NSString*)nombre apellido:(NSString*)apellido yDNI:(NSString*)dni;
 
 -(NSString*)muestraNombre;
 -(NSString*)muestraNombreyDNI;
+
+//Actividad 14
+-(void)calculaAltura:(NSNumber*)altura;
+-(void)calculaPeso:(NSNumber*)peso;
 
 @end

@@ -8,6 +8,16 @@
 
 #import "Humano.h"
 
+
+//Actividad 14
+@interface Humano()
+
+@property (readwrite, nonatomic, strong)NSNumber* altura;
+@property (readwrite, nonatomic, strong)NSNumber* peso;
+    
+@end
+
+
 @implementation Humano
 
 -(id)initWithNombre:(NSString*)nombre apellido:(NSString*)apellido yDNI:(NSString*)dni{
@@ -26,6 +36,15 @@
 
 -(NSString*)muestraNombreyDNI{
     return [[NSString alloc] initWithFormat:@"%@ %@, %@", self.nombre, self.primerApellido, self.dni];
+}
+
+//Actividad 14
+-(void)calculaAltura:(NSNumber*)altura{
+    self.altura = altura;
+}
+
+-(void)calculaPeso:(NSNumber *)peso{
+    self.peso = peso;
 }
 
 @end
