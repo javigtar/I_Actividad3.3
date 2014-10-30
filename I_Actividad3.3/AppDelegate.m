@@ -121,16 +121,28 @@
     unaFecha = [calendario dateByAddingUnit:NSCalendarUnitHour value:1 toDate:unaFecha options:0];
     unaFecha = [calendario dateByAddingUnit:NSCalendarUnitMinute value:30 toDate:unaFecha options:0];
     
-    NSLog(@"%@", [formato stringFromDate:unaFecha]);
+    NSLog(@"Fecha modificandole datos: %@", [formato stringFromDate:unaFecha]);
     
     //Actividad 18 . He utilizado el calendario, componentes y la fecha actual de la actividad 15
     NSDateComponents *compLunesActual = [calendario components:NSCalendarUnitWeekOfMonth | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:fechaActual];
     [compLunesActual setWeekday:2];
     
-    
     NSDate *lunesActual = [calendario dateFromComponents:compLunesActual];
     
     NSLog(@"Fecha del lunes de la semana actual: %@", [formato stringFromDate:lunesActual]);
+    
+    //Actividad 19 .He utilizado la fecha actual de la actividad 15
+    NSDateFormatter *formatoFecha = [[NSDateFormatter alloc] init];
+    [formatoFecha setDateStyle:NSDateFormatterLongStyle];
+    
+    NSLog(@"Fecha: %@, Locale: %@", [formatoFecha stringFromDate:fechaActual], [[formatoFecha locale] localeIdentifier]);
+    
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
+    
+    [formatoFecha setLocale:locale];
+    [formatoFecha setDateStyle:NSDateFormatterMediumStyle];
+    
+    NSLog(@"Fecha: %@, Locale: %@", [formatoFecha stringFromDate:fechaActual], [[formatoFecha locale] localeIdentifier]);
     
     
     return YES;
